@@ -297,15 +297,23 @@ PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8v
     var chore = document.getElementsByName("chore")[0].value;
     $( ".inputbox" ).val('');
     $("#myModal").modal('hide');
-    socket.send(chore);
+    var newchore = new Object(); 
+    newchore.chore = chore;
+    socket.send(JSON.stringify(newchore));
   })
 
   // triggered when receiving a message from the server
   socket.onmessage = function(receivedMessage) {
     // do something when you receive a message
+    
+    var data = JSON.parse(receivedMessage.data);
+    if (data.assign!==undefined){
+      return
+    }
+    
     $( ".newchores" ).append("<div class='newchoreitem'><li>"
-          +receivedMessage.data+"</li><div class='grab'>grab</div></div>");
-    newchorelist.push(receivedMessage.data);
+          +data.chore+"</li><div class='grab'>grab</div></div>");
+    newchorelist.push(data.chore);
   
   };
 

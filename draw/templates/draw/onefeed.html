@@ -222,6 +222,9 @@ PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8v
     // do something when you receive a message
 
     var data = JSON.parse(receivedMessage.data);
+    if (data.assign!==undefined){
+      return
+    }
     $( ".newchores" ).append("<div class='newchoreitem'><li>"
           +data.chore+"</li><div class='grab'>grab</div></div>");
     newchorelist.push(data.chore);

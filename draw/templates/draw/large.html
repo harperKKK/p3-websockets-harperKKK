@@ -40,14 +40,28 @@
   var socket = new WebSocket(
   'wss://p3-websockets-harperKKK-harperkwok828073.codeanyapp.com/ws/draw');
 
+  var userlist=[];
+  var chorelist=[];
   // triggered when receiving a message from the server
   socket.onmessage = function(receivedMessage) {
     // do something when you receive a message
     var data = JSON.parse(receivedMessage.data);
     if (data.assign!==undefined){
+      var storage = window.sessionStorage;
+      storage['users'] = JSON.stringify(userlist);
+      storage['chores'] = JSON.stringify(chorelist);
       window.location.href='../onefeed'
       return
     }
+    if (data.name!==undefined){
+      userlist.push(data.name);
+      return
+    }
+    if (data.chore!==undefined){
+      chorelist.push(data.chore);
+      return
+    }
+   
   };
 
   // notify console if socket closes unexpectedly

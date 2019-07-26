@@ -192,6 +192,9 @@ PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8v
       userlist.push(data.name);
       return
     }
+    if (data.assign!==undefined){
+      return
+    }
     
     $( ".chores" ).append('<li>'+data.chore+'</li>');
     chorelist.push(data.chore);
