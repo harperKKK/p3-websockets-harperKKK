@@ -157,9 +157,9 @@ PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8v
   var socket = new WebSocket(
     'wss://p3-websockets-harperKKK-harperkwok828073.codeanyapp.com/ws/draw');
 
-  socket.addEventListener('open', (event) => {
-    socket.send (JSON.stringify(currentuser));
-  });
+ setTimeout(function(){
+   socket.send (JSON.stringify(currentuser))
+ }, 5000);
 
   $( ".add" ).click(function(e){
     $("#myModal").modal('show');
@@ -178,13 +178,12 @@ PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8v
     var storage = window.sessionStorage;
     storage['users'] = JSON.stringify(userlist);
     storage['chores'] = JSON.stringify(chorelist);
-    window.location.href='../assigned/?name='+getQueryString("name");
+    window.location.href='../onefeed/?name='+getQueryString("name");
   })
 
   // triggered when receiving a message from the server
   socket.onmessage = function(receivedMessage) {
     // do something when you receive a message
-
     var data = JSON.parse(receivedMessage.data);
     if (data.name!==undefined){
       userlist.push(data.name);
