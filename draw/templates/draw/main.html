@@ -1,0 +1,204 @@
+  {% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>P4 Drawing</title>
+
+  <link rel="stylesheet" type="text/css" href="{% static 'draw/vendor/bootstrap/css/bootstrap.min.css' %}">
+  <script type="text/javascript" src="{% static 'draw/vendor/jquery/jquery-3.3.1.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'draw/vendor/paper/paper-full.min.js' %}"></script>
+  
+  <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <style type="text/css">
+    .head{
+      width:70vw;
+      border-bottom:solid 1px #8b6914;
+      font-size:70px;
+      color:#8b6914;
+      margin-top:3vh;
+      margin-left:5vw;
+    }
+    
+    .main{
+        background-color:#fff8dc;
+        height:100vh;
+        display:flex;
+        flex-direction:column;
+        width:100vw;
+      }
+    
+    .inputarea{   
+        width:80vw;
+        display:flex;
+        flex-direction:column;
+        padding-left:5vw;
+        padding-top:2vh;
+      }
+      
+      .inputbox{
+        width:70vw;
+        border:solid 1px #8b6914;
+        outline:none;
+        margin-top:2vh;
+        font-size:50px;
+        height:20vh;
+      }
+      
+      .inputline{
+        font-size:50px;
+        color:#8b6914;
+      }
+      
+      .submit{
+        margin-top:2vh;
+        border-color:#8b6914;
+        color:#8b6914;
+        background-color:transparent;
+        width:70vw;
+        border-style:solid;
+        border-width:1px;
+        outline:none;
+        font-size:50px
+      }
+    
+    .assign{
+      border-color:#8b6914;
+      color:#8b6914;
+      background-color:transparent;
+      width:80vw;
+      border-style:solid;
+      border-width:1px;
+      outline:none;
+      font-size:50px;
+      position:fixed;
+      bottom:3vh;
+      margin-left:10vw;
+    }
+    
+    .modal-content{
+      width:80vw;
+      margin-top:25vh;
+      padding-bottom:3vh;
+    }
+    
+    .modal-dialog{
+      display:flex;
+      justify-content:center;
+    }
+    
+    .add{
+      width:10vw;
+      margin-left:5vw;
+      margin-top:1vh;
+    }
+    
+    .chores{
+      color:#8b6914;
+      font-size:50px;
+      margin-top:2vh;
+      width:90vw;
+      margin-left:5vw;
+    }
+  </style>
+
+</head>
+  
+<body>
+  <div class='main'>
+    <div class='head'>
+      List all the chores
+    </div>
+    <ul class='chores'>
+    </ul>
+    <img class='add' src="data:image/svg+xml;base64,
+PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIGlkPSJDYXBhXzEiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgNTIgNTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUyIDUyOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiPjxnPjxnPgoJPHBhdGggZD0iTTI2LDBDMTEuNjY0LDAsMCwxMS42NjMsMCwyNnMxMS42NjQsMjYsMjYsMjZzMjYtMTEuNjYzLDI2LTI2UzQwLjMzNiwwLDI2LDB6IE0yNiw1MEMxMi43NjcsNTAsMiwzOS4yMzMsMiwyNiAgIFMxMi43NjcsMiwyNiwyczI0LDEwLjc2NywyNCwyNFMzOS4yMzMsNTAsMjYsNTB6IiBkYXRhLW9yaWdpbmFsPSIjMDAwMDAwIiBjbGFzcz0iYWN0aXZlLXBhdGgiIHN0eWxlPSJmaWxsOiM4QjY5MTQiIGRhdGEtb2xkX2NvbG9yPSIjMDAwMDAwIj48L3BhdGg+Cgk8cGF0aCBkPSJNMzguNSwyNUgyN1YxNGMwLTAuNTUzLTAuNDQ4LTEtMS0xcy0xLDAuNDQ3LTEsMXYxMUgxMy41Yy0wLjU1MiwwLTEsMC40NDctMSwxczAuNDQ4LDEsMSwxSDI1djEyYzAsMC41NTMsMC40NDgsMSwxLDEgICBzMS0wLjQ0NywxLTFWMjdoMTEuNWMwLjU1MiwwLDEtMC40NDcsMS0xUzM5LjA1MiwyNSwzOC41LDI1eiIgZGF0YS1vcmlnaW5hbD0iIzAwMDAwMCIgY2xhc3M9ImFjdGl2ZS1wYXRoIiBzdHlsZT0iZmlsbDojOEI2OTE0IiBkYXRhLW9sZF9jb2xvcj0iIzAwMDAwMCI+PC9wYXRoPgo8L2c+PC9nPiA8L3N2Zz4=" />
+    <button class='assign'>Assign</button>
+  </div>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class='inputarea'>
+          <div class='inputline'>
+            please input a chore: 
+          </div>
+          <textarea name="chore" class='inputbox' value=""></textarea>
+          <input type="submit" value="Submit" class='submit'/>
+        </div>
+      </div>
+
+    </div>
+  </div> 
+  
+</body>
+<script>
+  
+  function getQueryString(name) {
+    var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+    var r = window.location.search.substr(1).match(reg);
+    if (r != null) {
+        return unescape(r[2]);
+    }
+    return null;
+  }
+  
+  var currentuser = new Object(); 
+  currentuser.name = getQueryString("name");
+  
+  var chorelist = new Array();
+  var userlist = new Array();
+  
+  var socket = new WebSocket(
+    'wss://p3-websockets-harperKKK-harperkwok828073.codeanyapp.com/ws/draw');
+
+  socket.addEventListener('open', (event) => {
+    socket.send (JSON.stringify(currentuser));
+  });
+
+  $( ".add" ).click(function(e){
+    $("#myModal").modal('show');
+  })
+  
+  $( ".submit" ).click(function(e){
+    var chore = document.getElementsByName("chore")[0].value;
+    $( ".inputbox" ).val('');
+    $("#myModal").modal('hide');
+    var newchore = new Object(); 
+    newchore.chore = chore;
+    socket.send(JSON.stringify(newchore));
+  })
+  
+  $( ".assign" ).click(function(e){
+    var storage = window.sessionStorage;
+    storage['users'] = JSON.stringify(userlist);
+    storage['chores'] = JSON.stringify(chorelist);
+    window.location.href='../assigned/?name='+getQueryString("name");
+  })
+
+  // triggered when receiving a message from the server
+  socket.onmessage = function(receivedMessage) {
+    // do something when you receive a message
+
+    var data = JSON.parse(receivedMessage.data);
+    if (data.name!==undefined){
+      userlist.push(data.name);
+      return
+    }
+    
+    $( ".chores" ).append('<li>'+data.chore+'</li>');
+    chorelist.push(data.chore);
+  };
+
+  // notify console if socket closes unexpectedly
+  socket.onclose = function(e) {
+    console.error('Chat socket closed unexpectedly');
+  };
+
+</script>
+</html>
