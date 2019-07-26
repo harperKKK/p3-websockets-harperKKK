@@ -13,3 +13,6 @@ def onefeed(request):
   
 def tabs(request):
     return render(request,'draw/tabs.html',{})
+
+def large(request):
+    return render(request,'draw/large.html',{})

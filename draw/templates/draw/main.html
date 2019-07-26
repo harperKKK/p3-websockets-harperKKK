@@ -111,7 +111,7 @@
 <body>
   <div class='main'>
     <div class='head'>
-      List all the chores
+      Chores
     </div>
     <ul class='chores'>
     </ul>
@@ -178,7 +178,10 @@ PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8v
     var storage = window.sessionStorage;
     storage['users'] = JSON.stringify(userlist);
     storage['chores'] = JSON.stringify(chorelist);
-    window.location.href='../onefeed/?name='+getQueryString("name");
+    var assign = new Object(); 
+    assign.assign=true;
+    socket.send(JSON.stringify(assign));
+    window.location.href='../tabs/?name='+getQueryString("name");
   })
 
   // triggered when receiving a message from the server

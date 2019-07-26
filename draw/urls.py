@@ -9,5 +9,6 @@ urlpatterns = [
     path('main/', views.main, name='main'),
     path('onefeed/', views.onefeed, name='onefeed'),
     path('tabs/', views.tabs, name='tabs'),
+    path('large/', views.large, name='large'),
 ]
 
